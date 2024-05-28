@@ -1,8 +1,8 @@
-#Database
+# Database
 
-###1-1 Document your database container essentials: commands and Dockerfile.
+### 1-1 Document your database container essentials: commands and Dockerfile.
 
-####Dockerfile
+#### Dockerfile
 
 We want to import an image postgres to use for our database
 `FROM postgres:14.1-alpine`
@@ -31,12 +31,12 @@ We create the contenair database in the network we have created and mount data t
 We create the contenair adminer and put it in the network
 `docker run -d --name adminer --network database_prosp -p 8081:8080 adminer`
 
-#Backend API
+# Backend API
 
 We compile this Main to have a Main.class
 `javac Main.java`  
 
-####Dockerfile
+#### Dockerfile
 
 We use a simple image to interpret java code
 `FROM openjdk:17`
@@ -50,16 +50,16 @@ We build the image
 We run the image giving a port to see
 `docker run --name backend -it -p 8080:8080 pepsouille0/multistage_backend`
 
-##Multistage build
+## Multistage build
 
-###1-2 Why do we need a multistage build? And explain each step of this dockerfile.
+### 1-2 Why do we need a multistage build? And explain each step of this dockerfile.
 
 The multistage use different images to build and run the app.
 
-####Dockerfile
+#### Dockerfile
 
 We use this image to build our app. It copies everything useful for the app to be build
-# Build
+
 `FROM maven:3.8.6-amazoncorretto-17 AS myapp-build`
 `ENV MYAPP_HOME /opt/myapp`
 `WORKDIR $MYAPP_HOME`
@@ -68,7 +68,7 @@ We use this image to build our app. It copies everything useful for the app to b
 `RUN mvn package -DskipTests`
 
 We use this image image to run the app. 
-# Run
+
 `FROM amazoncorretto:17`
 `ENV MYAPP_HOME /opt/myapp`
 `WORKDIR $MYAPP_HOME`
@@ -83,9 +83,9 @@ We build the image
 We create the contenair and put it inside the network. We give a port to see its results
 docker run --name backend_db -p 8080:8080 --network database_prosp pepsouille0/database_backend
 
-#Http server
+# Http server
 
-####Dockerfile
+#### Dockerfile
 
 We use this image to get a web interface.
 `FROM httpd:latest`
