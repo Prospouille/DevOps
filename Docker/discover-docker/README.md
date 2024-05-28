@@ -11,12 +11,15 @@ We want to import an image postgres to use for our database
 We create environment variables to configure our datase. It needs a name, a user and a password
 
 `ENV POSTGRES_DB=db \`
+
    `POSTGRES_USER=usr \`
+   
    `POSTGRES_PASSWORD=pwd`
 
 We copy the sql files inside the container to get data inside our database.
 
 `COPY 01-CreateScheme.sql /docker-entrypoint-initdb.d`
+
 `COPY 02-InsertData.sql /docker-entrypoint-initdb.d`
 
 We want to build the database image.
@@ -74,17 +77,25 @@ The multistage use different images to build and run the app.
 We use this image to build our app. It copies everything useful for the app to be build
 
 `FROM maven:3.8.6-amazoncorretto-17 AS myapp-build`
+
 `ENV MYAPP_HOME /opt/myapp`
+
 `WORKDIR $MYAPP_HOME`
+
 `COPY pom.xml .`
+
 `COPY src ./src`
+
 `RUN mvn package -DskipTests`
 
 We use this image image to run the app. 
 
 `FROM amazoncorretto:17`
+
 `ENV MYAPP_HOME /opt/myapp`
+
 `WORKDIR $MYAPP_HOME`
+
 `COPY --from=myapp-build $MYAPP_HOME/target/*.jar $MYAPP_HOME/myapp.jar`
 
 This is the entrypoint to our app
