@@ -57,7 +57,7 @@ jobs:
         uses: docker/build-push-action@v3
         with: 
             # relative path to the place where source code with Dockerfile is located
-            context: ./Docker/discover-docker/database/data
+            context: ./Docker/discover-docker/database
             # Note: tags has to be all lower-case
             tags:  ${{secrets.DOCKER_USERNAME}}/database:latest
             push: ${{ github.ref == 'refs/heads/main' }}
