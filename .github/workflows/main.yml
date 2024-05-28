@@ -26,7 +26,7 @@ jobs:
       # Change directory to where the pom.xml file is located and build/test with Maven
       - name: Build and test with Maven
         working-directory: ./Docker/discover-docker/backend/simple-api-student-main
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=devopsepf -Dsonar.organization=DevOpsEPF -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=devopsepf_docker -Dsonar.organization=devopsepf -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api-student-main/pom.xml
 
 # define job to build and publish docker image
   build-and-push-docker-image:
