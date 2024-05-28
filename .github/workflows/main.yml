@@ -25,5 +25,5 @@ jobs:
 
       # Change directory to where the pom.xml file is located and build/test with Maven
       - name: Build and test with Maven
-        working-directory: ../../Docker/discover-docker/backend/simple-api-student-main
+        working-directory: ./Docker/discover-docker/backend/simple-api-student-main
         run: mvn clean verify
