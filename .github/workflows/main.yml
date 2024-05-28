@@ -54,8 +54,8 @@ build-and-push-docker-image:
        push: ${{ github.ref == 'refs/heads/main' }}
 
    - name: Build image and push database
-      uses: docker/build-push-action@v3
-      with: 
+     uses: docker/build-push-action@v3
+     with: 
         # relative path to the place where source code with Dockerfile is located
         context: ./Docker/discover-docker/database/data
         # Note: tags has to be all lower-case
