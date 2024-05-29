@@ -107,7 +107,7 @@ We build the image
 `docker build -t pepsouille0/database_backend .`
 
 We create the contenair and put it inside the network. We give a port to see its results
-docker run --name backend_db -p 8080:8080 --network database_prosp pepsouille0/database_backend
+`docker run --name backend_db -p 8080:8080 --network database_prosp pepsouille0/database_backend`
 
 # Http server
 

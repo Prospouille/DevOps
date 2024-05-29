@@ -1,0 +1,10 @@
+---
+# tasks file for roles/backend
+- name: Run backend
+  docker_container:
+    name: backend_db
+    image: pepsouille0/discover-docker-backend:1.0
+    networks: 
+      - name: prosp_network
+    ports: 
+      - "8080:8080"
