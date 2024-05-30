@@ -88,7 +88,7 @@ name: Run database
 
 ### Httpd 
 
-This one run the container httpd, open the ports 80:80 and put it inside the network
+This one run the container httpd, open the ports 80:80 and put it inside the network.
 
 `ansible-galaxy init roles/httpd`
 
@@ -157,7 +157,7 @@ jobs:
         run: echo "ANSIBLE_HOST_KEY_CHECKING=False" >> $GITHUB_ENV
  
       - name: Run deployment playbook
-        run: |
+        run: 
           ansible-playbook -i ../../Ansible/inventories/setup.yml ../../Ansible/playbook.yml
         env:
           ANSIBLE_HOST_KEY_CHECKING: False
